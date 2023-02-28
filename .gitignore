@@ -1,2 +1,5 @@
 .python-version
 Pipfile
+Pipfile.lock
+.vscode
+**/*.pyc
