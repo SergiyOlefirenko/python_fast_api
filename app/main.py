@@ -1,9 +1,6 @@
-from typing import List, Optional
-from fastapi import Body, FastAPI, Response, status, HTTPException, Depends
-from . import schemas 
+from fastapi import Body, FastAPI
 from . import models
-from .database import engine, get_db
-from sqlalchemy.orm import Session
+from .database import engine
 from app.routers import user, post
 
 models.Base.metadata.create_all(bind=engine)
