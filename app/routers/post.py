@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from fastapi import Response, status, HTTPException, Depends, APIRouter
 from app import schemas, models, oauth2
 from app.database import get_db
@@ -10,8 +10,15 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[schemas.PostResponse])
-def get_posts(db: Session = Depends(get_db)):
-    return db.query(models.Post).all()
+def get_posts(db: Session = Depends(get_db)
+              , limit: int = 10
+              , offset: int = 0
+              , search: Optional[str] = ""):
+
+    return db.query(models.Post) \
+        .filter(models.Post.title.contains(search)) \
+        .order_by(models.Post.created_at) \
+        .limit(limit).offset(offset).all()
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.PostResponse)
