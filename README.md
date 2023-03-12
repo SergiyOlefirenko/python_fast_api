@@ -20,3 +20,7 @@ openssl rand -hex 32
 - ```ALGORITHM``` - encoding algorithm. Example: ```HS256```.
 
 - ```ACCESS_TOKEN_EXPIRE_MINS``` - expiration time for the access token. Example: ```60```.
+
+## Run API with docker-compose
+
+```docker-compose -f docker-compose-dev.yml up```

@@ -19,7 +19,6 @@ class PostBase(BaseModel):
     title: str
     content: str
     published: bool = True
-    owner: UserResponse
     
     class Config:
         orm_mode = True
@@ -30,6 +29,7 @@ class PostCreate(PostBase):
 class PostResponse(PostBase):
     id: int
     created_at: datetime
+    owner: UserResponse
 
 class PostVote(BaseModel):
     Post: PostResponse
